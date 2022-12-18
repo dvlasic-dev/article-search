@@ -1,3 +1,5 @@
+import { FormEvent, ReactNode } from "react";
+
 export interface IPost {
   title: string;
   slug: string;
@@ -22,7 +24,20 @@ export interface IPosts {
   posts: IPost[];
   handleConfirmDelete: (post: IPost) => void;
   totalPostsLength: number;
+  setPosts: () => void;
 }
+export interface IModal {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+  children: ReactNode;
+}
+export interface ISearch {
+  searchPosts: (e: FormEvent) => void;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export enum CategoryEnum {
   "X Universe" = 1,
   "Elite: Dangerous" = 2,

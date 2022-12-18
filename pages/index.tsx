@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Head from "next/head";
 import Fuse from "fuse.js";
 import { GetServerSidePropsContext } from "next";
@@ -11,7 +11,6 @@ import Modal from "../components/Modal";
 import Dropdown from "../components/Dropdown";
 import Search from "../components/Search";
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
 
 const Home = ({
   posts,
@@ -108,7 +107,7 @@ const Home = ({
     }
   };
 
-  const searchPosts = (e: Event) => {
+  const searchPosts = (e: FormEvent) => {
     e.preventDefault();
     router.replace(
       {
@@ -144,6 +143,7 @@ const Home = ({
       );
     }
   };
+
   return (
     <div>
       <Head>
@@ -176,6 +176,10 @@ const Home = ({
             handleConfirmDelete={handleConfirmDelete}
             currentCategory={currentCategory}
             posts={filteredPosts}
+            setPosts={() => {
+              setPosts(posts);
+              setFilteredPosts(posts);
+            }}
             totalPostsLength={currentPosts.length}
           />
         </AppWrapper>

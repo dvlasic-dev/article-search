@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { IModal } from "../utils/types";
 
-const Modal = ({ open, setOpen, title, children }) => {
+const Modal = ({ open, setOpen, title, children }: IModal) => {
   useEffect(() => {
     if (open) {
       document.documentElement.style.overflow = "hidden";
@@ -22,7 +23,7 @@ const Modal = ({ open, setOpen, title, children }) => {
     </ModalContainer>
   );
   if (typeof window === "object") {
-    return open && createPortal(modalContent, document.body);
+    return open ? createPortal(modalContent, document.body) : null;
   }
   return null;
 };

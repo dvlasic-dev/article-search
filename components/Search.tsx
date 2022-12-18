@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { ISearch } from "../utils/types";
 
-const Search = ({ searchPosts, searchQuery, setSearchQuery }) => {
+const Search = ({ searchPosts, searchQuery, setSearchQuery }: ISearch) => {
   return (
     <SearchWrapper onSubmit={searchPosts}>
       <Input

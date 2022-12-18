@@ -2,12 +2,33 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import { IPost, CategoryEnum, IPosts } from "../utils/types";
 import { formatDate } from "../utils/functions";
+//import ContentLoader from "react-content-loader";
+
+// const Loader = (props: any) => (
+//   <ContentLoader
+//     speed={2}
+//     width={1280}
+//     height={340}
+//     viewBox="0 0 1280 340"
+//     backgroundColor="#dddddd"
+//     foregroundColor="#8a8a8a"
+//     {...props}
+//   >
+//     <rect x="665" y="10" rx="2" ry="2" width="400" height="16" />
+//     <rect x="665" y="40" rx="2" ry="2" width="250" height="10" />
+//     <rect x="6" y="-13" rx="2" ry="2" width="630" height="333" />
+//     <rect x="665" y="60" rx="2" ry="2" width="250" height="10" />
+//     <rect x="665" y="80" rx="2" ry="2" width="250" height="10" />
+//     <rect x="665" y="100" rx="2" ry="2" width="250" height="10" />
+//   </ContentLoader>
+// );
 
 const Posts = ({
   currentCategory,
   posts,
   handleConfirmDelete,
   totalPostsLength,
+  setPosts,
 }: IPosts) => {
   const currentPostCount = posts.length;
   return (
@@ -24,7 +45,9 @@ const Posts = ({
           {currentPostCount !== 1 ? "articles" : "article"}
         </Heading4>
       </PostsHeader>
-      {totalPostsLength < 100 ? <Button>refetch</Button> : null}
+      {totalPostsLength < 100 ? (
+        <Button onClick={setPosts}>Refetch</Button>
+      ) : null}
       <PostsWrapper>
         {posts.map((item: IPost) => {
           return (
